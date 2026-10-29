@@ -1,412 +1,1197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Sudhanshu Khetan — CS &amp; AI Developer</title>
-<meta name="description" content="Portfolio of Sudhanshu Khetan — First-year B.Tech in CS & AI at Newton School, Python Developer, Competitive Programmer, and Rapid Prototyper.">
-<meta name="author" content="Sudhanshu Khetan">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
-
-<!-- Open Graph / Social Sharing -->
-<meta property="og:title" content="Sudhanshu Khetan — CS &amp; AI Developer">
-<meta property="og:description" content="Turning code into intelligence that solves real problems. Explore interactive 3D anime/cyber aesthetics and terminal mode.">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sudhanshu Khetan — CS &amp; AI Developer">
-<meta name="twitter:description" content="Turning code into intelligence that solves real problems.">
+<title>Sudhanshu Khetan — Quantum Lab &amp; AI Architect</title>
+<meta name="description" content="Quantum Lab interactive portfolio of Sudhanshu Khetan — First-year B.Tech CS & AI student at Newton School, Python developer, competitive programmer, and future AI architect.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Noto+Sans+JP:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','system-ui','sans-serif'],head:['Outfit','Inter','sans-serif'],jp:['"Noto Sans JP"','sans-serif'],mono:['JetBrains Mono','ui-monospace','monospace']}}}};
-</script>
-<style>
-:root{color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--sk:#ff9ec7;--bl:#7cc8ff;--lv:#b9a6ff;--gd:#ffd98a;--ink:#1b1340}
-html{scroll-padding-top:88px;scroll-behavior:smooth}
-body{background:linear-gradient(180deg,#0d0a24 0%,#16103a 50%,#241650 100%);background-attachment:fixed;color:#ece8ff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(700px circle at 12% 8%,rgba(255,158,199,.16),transparent 60%),radial-gradient(700px circle at 92% 30%,rgba(124,200,255,.14),transparent 60%)}
-#c3d{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-#gui,#term,footer,.nav{position:relative;z-index:1}
-.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
-#prog{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;width:0;z-index:40;background:linear-gradient(90deg,var(--sk),var(--lv),var(--bl))}
-.panel{position:relative;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.15);border-radius:20px;box-shadow:6px 6px 0 rgba(185,166,255,.16)}
-.panel::after{content:"";position:absolute;top:0;right:0;width:90px;height:90px;border-radius:0 20px 0 0;pointer-events:none;background:radial-gradient(rgba(255,255,255,.22) 1.2px,transparent 1.6px) 0 0/9px 9px;-webkit-mask:linear-gradient(225deg,#000,transparent 65%);mask:linear-gradient(225deg,#000,transparent 65%)}
-.tilt{transform-style:preserve-3d;transition:transform .2s ease-out,border-color .3s,box-shadow .3s}
-.tilt:hover{border-color:var(--sk);box-shadow:8px 8px 0 rgba(255,158,199,.28),0 20px 50px -20px rgba(255,158,199,.4)}
-.tilt .z{transform:translateZ(30px)}.tilt .zz{transform:translateZ(56px)}
-.grad{background:linear-gradient(95deg,var(--sk),var(--lv),var(--bl),var(--sk));background-size:250% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 7s linear infinite}
-@keyframes flow{to{background-position:250% center}}
-.ch{display:inline-block;opacity:0;transform:translateY(70%) rotate(6deg);animation:chIn .7s cubic-bezier(.2,.9,.3,1.3) forwards;animation-delay:calc(var(--i)*55ms + .2s)}
-@keyframes chIn{to{opacity:1;transform:none}}
-.lbl{display:flex;align-items:center;gap:.7rem;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sk)}
-.lbl b{font-family:'Noto Sans JP',sans-serif;font-weight:700;letter-spacing:.1em;color:var(--lv)}
-.lbl::after{content:"";height:1px;width:60px;background:linear-gradient(90deg,var(--sk),transparent)}
-.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.7rem;font-weight:600;font-size:.92rem;border:1.5px solid rgba(255,255,255,.4);border-radius:10px;background:rgba(255,255,255,.06);color:#fff;transform:skewX(-8deg);box-shadow:4px 4px 0 rgba(185,166,255,.35);transition:transform .15s,box-shadow .15s,background .2s;cursor:pointer}
-.btn>span{display:inline-flex;align-items:center;gap:.6rem;transform:skewX(8deg)}
-.btn::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 10px,rgba(255,255,255,.25) 10px 12px);transform:translateX(-110%);transition:transform .45s}
-.btn:hover::after{transform:translateX(110%)}
-.btn:hover{transform:skewX(-8deg) translate(2px,2px);box-shadow:2px 2px 0 rgba(185,166,255,.35);background:rgba(255,255,255,.12)}
-.btn:active{transform:skewX(-8deg) translate(4px,4px);box-shadow:0 0 0 transparent}
-.btn-p{background:linear-gradient(95deg,var(--sk),var(--lv));color:var(--ink);border-color:transparent;box-shadow:4px 4px 0 rgba(255,255,255,.35)}
-.btn-p:hover{background:linear-gradient(95deg,#ffb1d3,#c9b9ff)}
-.chip{display:inline-block;padding:.38rem .85rem;border-radius:999px;font-size:.8rem;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .2s}
-.chip:hover{border-color:var(--sk);background:rgba(255,158,199,.18);transform:translateY(-2px)}
-.lock{opacity:.5;border-style:dashed}
-.rv{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
-.rv.on{opacity:1;transform:none}
-.hl{height:3px;width:64px;margin-top:16px;background:linear-gradient(90deg,var(--sk),var(--bl));transform-origin:left;transform:scaleX(0);transition:transform .8s .25s}
-.on .hl,.hl.on{transform:none}
-.dot{width:8px;height:8px;border-radius:50%;background:#6ee7a0;animation:pl 2s infinite}
-@keyframes pl{0%{box-shadow:0 0 0 0 rgba(110,231,160,.7)}70%,100%{box-shadow:0 0 0 9px rgba(110,231,160,0)}}
-.fl{display:inline-block;animation:fl 4s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-10px)}}
-.bl{animation:bl 1s steps(1) infinite}@keyframes bl{50%{opacity:0}}
-.mq{display:flex;gap:2.5rem;width:max-content;animation:mq 32s linear infinite}@keyframes mq{to{transform:translateX(-50%)}}
-.ico{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:1rem;color:var(--ink);background:linear-gradient(135deg,var(--sk),var(--lv))}
-#tw{background:rgba(12,8,32,.9);border:1.5px solid rgba(255,255,255,.18);border-radius:16px;font-family:'JetBrains Mono',monospace;font-size:.85rem;height:min(68vh,540px);overflow-y:auto;padding:1.2rem}
-#tw .g{color:#6ee7a0}#tw .b{color:var(--bl)}#tw .m{color:#9a90c4}
-#tin{background:transparent;outline:none;border:0;color:#ece8ff;flex:1;font:inherit;min-width:0}
-dialog{background:#171040;color:#ece8ff;border:1.5px solid rgba(255,255,255,.2);border-radius:20px;padding:2rem;max-width:540px;width:calc(100% - 2rem);box-shadow:8px 8px 0 rgba(185,166,255,.2)}
-dialog::backdrop{background:rgba(8,5,24,.75);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.ch{opacity:1;transform:none}.hl{transform:none}}
 
-/* Print Styles for Resume */
-@media print{
-  body{background:#fff!important;color:#111!important}
-  body::before,#c3d,#gui,#term,footer,.nav,#prog{display:none!important}
-  dialog{position:static;display:block!important;background:#fff!important;color:#111!important;border:none!important;box-shadow:none!important;padding:0!important;max-width:100%!important;width:100%!important}
-  dialog .lbl{color:#555!important}
-  dialog .btn,dialog #rClose,dialog .print-hide{display:none!important}
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      colors:{
+        obsidian:{950:'#030407',900:'#05070a',850:'#090d14',800:'#0f1522'},
+        cyan:{DEFAULT:'#00F0FF',glow:'rgba(0,240,255,0.45)'},
+        violet:{DEFAULT:'#7000FF',glow:'rgba(112,0,255,0.45)'}
+      },
+      fontFamily:{
+        sans:['Inter','system-ui','sans-serif'],
+        display:['Syne','sans-serif'],
+        mono:['JetBrains Mono','monospace']
+      }
+    }
+  }
+};
+</script>
+
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#05070a;
+  --card:rgba(9,13,20,0.72);
+  --border:rgba(255,255,255,0.08);
+  --cyan:#00F0FF;
+  --violet:#7000FF;
+  --text:#f0f4fc;
+  --muted:#8490a7;
+  box-sizing:border-box;
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+h1,h2,h3,.font-display{font-family:'Syne',sans-serif}
+.font-mono{font-family:'JetBrains Mono',monospace}
+
+/* 3D background & Quantum Particle Mesh */
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.grid-overlay{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse at 50% 35%,#000 25%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 35%,#000 25%,transparent 80%);
+}
+#cursorGlow{
+  position:fixed;width:550px;height:550px;border-radius:50%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(0,240,255,0.12),rgba(112,0,255,0.08) 45%,transparent 70%);
+  transform:translate(-50%,-50%);left:50%;top:30%;transition:opacity 0.3s;
+}
+
+/* Glassmorphism & Floating Cards */
+.glass-panel{
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:24px;
+  box-shadow:0 30px 60px -25px rgba(0,0,0,0.85),0 0 30px -15px rgba(0,240,255,0.12);
+  transition:transform 0.25s ease-out,border-color 0.3s,box-shadow 0.3s;
+}
+.glass-panel:hover{
+  border-color:rgba(0,240,255,0.4);
+  box-shadow:0 40px 80px -20px rgba(0,0,0,0.9),0 0 45px -10px rgba(0,240,255,0.25);
+}
+
+/* Gentle Levitation along Y-Axis */
+.levitate{animation:floatY 7s ease-in-out infinite}
+.levitate-alt{animation:floatYAlt 8.5s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatYAlt{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* Neon Gradient Text */
+.grad-cyan-violet{
+  background:linear-gradient(135deg,var(--cyan),#60a5fa,#a78bfa,var(--violet));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* Cinematic Intro Overlay */
+#intro{
+  position:fixed;inset:0;z-index:100;
+  background:#030407;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:24px;transition:opacity 0.9s cubic-bezier(0.2,0.8,0.2,1),visibility 0.9s;
+}
+#intro.off{opacity:0;visibility:hidden;pointer-events:none}
+#intro::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(0,240,255,0.03) 0 1px,transparent 1px 4px);
+}
+#intro::after{
+  content:"";position:absolute;inset:20px;border:1px solid rgba(0,240,255,0.2);pointer-events:none;
+  clip-path:polygon(0 0,35px 0,35px 2px,2px 2px,2px 35px,0 35px,0 0,100% 0,100% 35px,calc(100% - 2px) 35px,calc(100% - 2px) 2px,calc(100% - 35px) 2px,calc(100% - 35px) 0,100% 0,100% 100%,calc(100% - 35px) 100%,calc(100% - 35px) calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) calc(100% - 35px),100% calc(100% - 35px),0 100%,35px 100%,35px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 35px),0 calc(100% - 35px));
+}
+
+#countNum{
+  font:800 clamp(5.5rem,24vw,14rem)/1 'Syne',sans-serif;
+  background:linear-gradient(180deg,#ffffff,#00F0FF 65%,#7000FF);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-variant-numeric:tabular-nums;
+  filter:drop-shadow(0 0 35px rgba(0,240,255,0.5));
+}
+
+/* Pulse Glow Keyframes */
+@keyframes neonPulse{
+  0%,100%{box-shadow:0 0 20px rgba(0,240,255,0.35),inset 0 0 15px rgba(0,240,255,0.2)}
+  50%{box-shadow:0 0 35px rgba(0,240,255,0.7),inset 0 0 25px rgba(0,240,255,0.4)}
+}
+.neon-btn{animation:neonPulse 2.4s infinite}
+
+/* Chip Styles */
+.q-chip{
+  padding:6px 14px;border-radius:999px;font-size:0.8rem;
+  border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);
+  transition:all 0.25s ease;
+}
+.q-chip:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,240,255,0.08);transform:translateY(-2px)}
+.q-chip-future{
+  border-style:dashed;border-color:rgba(112,0,255,0.4);background:rgba(112,0,255,0.06);color:#c4b5fd;
+}
+.q-chip-future:hover{border-color:#a78bfa;color:#ffffff;background:rgba(112,0,255,0.16)}
+
+/* Equalizer Bars */
+.eq-bar{display:inline-block;width:3px;height:12px;background:var(--cyan);margin:0 1px;border-radius:1px;animation:eqAnim 1s ease-in-out infinite alternate}
+.eq-bar:nth-child(2){animation-delay:0.2s;height:16px}
+.eq-bar:nth-child(3){animation-delay:0.4s;height:8px}
+@keyframes eqAnim{0%{transform:scaleY(0.3)}100%{transform:scaleY(1.2)}}
+
+/* Terminal log styling */
+#tw{
+  background:rgba(5,7,10,0.92);border:1px solid rgba(0,240,255,0.25);border-radius:18px;
+  font-family:'JetBrains Mono',monospace;height:min(66vh,520px);overflow-y:auto;padding:1.4rem;
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
 }
 </style>
 </head>
-<body>
-<canvas id="c3d"></canvas>
-<div id="prog"></div>
+<body class="selection:bg-cyan selection:text-black">
 
-<header class="nav px-4 pt-3">
-  <div class="max-w-6xl mx-auto flex items-center justify-between panel !rounded-full !shadow-none px-5 py-2.5 !bg-[rgba(18,12,48,.7)] backdrop-blur-md">
-    <a href="#top" class="font-head font-bold text-lg">Sudhanshu<span class="grad">.</span></a>
-    <nav class="hidden md:flex gap-7 text-sm text-violet-200/70">
-      <a class="hover:text-white transition" href="#about">About</a>
-      <a class="hover:text-white transition" href="#skills">Skills</a>
-      <a class="hover:text-white transition" href="#edge">Experience</a>
-      <a class="hover:text-white transition" href="#projects">Projects</a>
-      <a class="hover:text-white transition" href="#contact">Contact</a>
-    </nav>
-    <div class="flex items-center gap-2">
-      <button id="modeBtn" class="btn !py-1.5 !px-4 !text-xs !shadow-none"><span>&gt;_ Terminal</span></button>
-      <button id="mobileNavBtn" class="md:hidden p-2 text-violet-200 hover:text-white focus:outline-none text-lg" aria-label="Toggle navigation">☰</button>
+<canvas id="gl"></canvas>
+<div class="grid-overlay"></div>
+<div id="cursorGlow"></div>
+
+<!-- ==================== 1. GATEKEEPER & CINEMATIC INTRO ==================== -->
+<div id="intro">
+  <!-- Top Right Skip Option -->
+  <button id="skipBtn" class="absolute top-6 right-6 font-mono text-xs text-muted hover:text-cyan border border-white/10 hover:border-cyan/50 px-4 py-2 rounded-full transition flex items-center gap-1.5 z-20">
+    Skip Intro ↗
+  </button>
+
+  <!-- Initial State: Gatekeeper Button -->
+  <div id="gatekeeper" class="flex flex-col items-center">
+    <div class="font-mono text-xs tracking-[0.3em] uppercase text-cyan/70 mb-4 flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-cyan animate-ping"></span>
+      QUANTUM LAB · EXPERIMENTAL SYSTEM
+    </div>
+    
+    <button id="initBtn" class="neon-btn font-mono font-semibold text-sm tracking-wider px-8 py-4 rounded-full border border-cyan bg-cyan/10 text-cyan hover:bg-cyan hover:text-black transition duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-3">
+      <span>⚡ INITIALIZE QUANTUM LAB · AUDIO ON</span>
+    </button>
+
+    <p class="font-mono text-[11px] text-muted mt-5">
+      Synthesizing low-frequency browser audio &amp; 3D particle lattice
+    </p>
+  </div>
+
+  <!-- Boot Countdown (100 -> 0) -->
+  <div id="bootSequence" class="hidden flex flex-col items-center max-w-md w-full">
+    <div id="countNum">100</div>
+    <div id="bootStatus" class="font-mono text-xs tracking-widest text-muted uppercase mt-2">
+      Aligning Quantum Oscillators
+    </div>
+    <div class="w-full h-1 bg-white/10 rounded-full mt-6 overflow-hidden">
+      <div id="bootBar" class="h-full w-0 bg-gradient-to-r from-cyan to-violet transition-all duration-75"></div>
     </div>
   </div>
-  <div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 p-4 panel !bg-[rgba(18,12,48,.95)] backdrop-blur-md flex flex-col gap-3 text-sm text-violet-200 text-center">
-    <a class="hover:text-white py-1 transition" href="#about">About</a>
-    <a class="hover:text-white py-1 transition" href="#skills">Skills</a>
-    <a class="hover:text-white py-1 transition" href="#edge">Experience</a>
-    <a class="hover:text-white py-1 transition" href="#projects">Projects</a>
-    <a class="hover:text-white py-1 transition" href="#contact">Contact</a>
+
+  <!-- Cinematic Name Landing -->
+  <div id="nameReveal" class="hidden flex flex-col items-center max-w-3xl px-4">
+    <div id="nameTitle" class="font-display font-extrabold text-5xl md:text-8xl tracking-tight leading-none text-center">
+      <span id="firstName" class="text-white block opacity-0 transform translate-y-6">SUDHANSHU</span>
+      <span id="lastName" class="grad-cyan-violet block opacity-0 transform translate-y-6">KHETAN</span>
+    </div>
+    <div id="nameLine" class="h-0.5 w-0 bg-gradient-to-r from-transparent via-cyan to-transparent my-6 transition-all duration-1000"></div>
+    <div id="subText" class="font-mono text-xs md:text-sm tracking-[0.35em] text-cyan/90 uppercase opacity-0"></div>
+  </div>
+</div>
+
+<!-- ==================== MAIN PORTFOLIO NAVIGATION ==================== -->
+<header class="sticky top-0 z-30 px-4 pt-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between glass-panel !rounded-full px-5 py-3 !bg-[rgba(5,7,11,0.75)] border-white/10">
+    <a href="#top" class="font-display font-bold text-lg tracking-wider flex items-center gap-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-cyan shadow-[0_0_10px_#00F0FF]"></span>
+      <span>SK<span class="text-cyan">.LAB</span></span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7 text-xs font-mono tracking-wider text-muted">
+      <a class="hover:text-cyan transition" href="#about">// 01 About</a>
+      <a class="hover:text-cyan transition" href="#arsenal">// 02 Arsenal</a>
+      <a class="hover:text-cyan transition" href="#projects">// 03 Projects</a>
+      <a class="hover:text-cyan transition" href="#edge">// 04 Edge</a>
+      <a class="hover:text-cyan transition" href="#contact">// 05 Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <!-- Audio Toggle Button -->
+      <button id="audioToggle" class="flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 hover:border-cyan/40 bg-white/5 font-mono text-[11px] text-cyan transition" title="Toggle Soundscape">
+        <span class="flex items-end h-3" id="eqGraphic">
+          <span class="eq-bar"></span><span class="eq-bar"></span><span class="eq-bar"></span>
+        </span>
+        <span id="audioLabel">AUDIO ON</span>
+      </button>
+
+      <!-- Terminal Switcher -->
+      <button id="termBtn" class="font-mono text-xs px-3.5 py-1.5 rounded-full border border-cyan/40 bg-cyan/10 hover:bg-cyan hover:text-black text-cyan transition">
+        &gt;_ Terminal
+      </button>
+    </div>
   </div>
 </header>
 
-<div id="gui">
-<section id="top" class="min-h-[88vh] flex items-center px-4">
-  <div class="max-w-6xl mx-auto w-full py-16">
-    <div class="rv inline-flex items-center gap-2 panel !rounded-full !shadow-none px-4 py-1.5 text-xs md:text-sm"><span class="dot"></span> Open to Hackathons, Open-Source &amp; Collaborations</div>
-    <p class="rv font-jp text-sm text-violet-300 mt-8 tracking-widest" style="--d:.1s">学生 · 開発者 &nbsp;/&nbsp; STUDENT · DEVELOPER</p>
-    <h1 class="font-head font-extrabold tracking-tight leading-[1.02] text-5xl sm:text-7xl md:text-8xl mt-3" aria-label="Sudhanshu Khetan"><span id="n1"></span><br><span id="n2" class="grad"></span></h1>
-    <p class="rv font-head text-xl md:text-3xl mt-6 text-violet-100" style="--d:.3s">I’m a <span id="typed" class="text-pink-300"></span><span class="bl text-sky-300">▌</span></p>
-    <p class="rv mt-4 max-w-xl text-violet-200/75 text-lg" style="--d:.4s">First-year B.Tech in Computer Science &amp; AI at Newton School — turning code into intelligence that solves real problems.</p>
-    <div class="rv mt-10 flex flex-wrap gap-5" style="--d:.5s">
-      <a href="#projects" class="btn btn-p mg"><span>Explore Projects →</span></a>
-      <button id="resumeBtn" class="btn mg"><span>View / Download Resume</span></button>
+<!-- ==================== MAIN CONTENT (DE-CLUTTERED FLOATING LAYOUT) ==================== -->
+<div id="guiWrapper">
+<main class="max-w-6xl mx-auto px-4 py-16 space-y-36" id="top">
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="min-h-[80vh] flex flex-col justify-center">
+    <div class="max-w-3xl">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-cyan/30 bg-cyan/5 font-mono text-xs text-cyan mb-8">
+        <span class="w-2 h-2 rounded-full bg-cyan animate-pulse"></span>
+        SYSTEM READY · 1ST YEAR B.TECH CS &amp; AI @ NEWTON SCHOOL
+      </div>
+
+      <h1 class="font-display font-extrabold text-5xl sm:text-7xl md:text-8xl tracking-tight leading-[1.02]">
+        Turning code into <span class="grad-cyan-violet">intelligent systems.</span>
+      </h1>
+
+      <p class="mt-6 text-muted text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+        I’m <span class="text-white font-medium">Sudhanshu Khetan</span> — curious by default, disciplined by habit. 
+        I build high-performance software with Python and web technologies, sharpen core algorithmic intuition, and experiment on the edge of modern AI.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="#projects" class="px-7 py-3.5 rounded-xl bg-gradient-to-r from-cyan to-blue-600 text-black font-semibold text-sm hover:shadow-[0_0_25px_rgba(0,240,255,0.4)] transition transform hover:-translate-y-0.5">
+          Explore Quests →
+        </a>
+        <button id="resumeOpenBtn" class="px-7 py-3.5 rounded-xl border border-white/20 hover:border-cyan text-white font-medium text-sm hover:bg-white/5 transition flex items-center gap-2">
+          <span>View Resume 📄</span>
+        </button>
+        <a href="#contact" class="px-7 py-3.5 rounded-xl font-mono text-xs text-muted hover:text-white transition">
+          // Direct Line ↗
+        </a>
+      </div>
+
+      <!-- Quick Floating Status Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-16 pt-8 border-t border-white/10">
+        <div class="glass-panel p-4 text-center levitate">
+          <div class="font-display text-2xl font-bold text-cyan">LV. 01</div>
+          <div class="font-mono text-xs text-muted mt-1">CS &amp; AI Engineer</div>
+        </div>
+        <div class="glass-panel p-4 text-center levitate-alt">
+          <div class="font-display text-2xl font-bold text-violet-400">Newton</div>
+          <div class="font-mono text-xs text-muted mt-1">School of Tech</div>
+        </div>
+        <div class="glass-panel p-4 text-center levitate col-span-2 sm:col-span-1">
+          <div class="font-display text-2xl font-bold text-white">Python + Web</div>
+          <div class="font-mono text-xs text-muted mt-1">Active Core Stack</div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="overflow-hidden border-y border-white/10 py-4 text-violet-300/70 text-sm bg-black/10"><div class="mq" id="mq"></div></div>
+  <!-- ==================== 01 ABOUT SECTION ==================== -->
+  <section id="about" class="grid lg:grid-cols-12 gap-8 items-center">
+    <div class="lg:col-span-7 glass-panel p-8 md:p-12 levitate">
+      <div class="font-mono text-xs text-cyan tracking-widest uppercase mb-3">// 01 HYPOTHESIS &amp; PHILOSOPHY</div>
+      <h2 class="font-display text-3xl md:text-5xl font-bold leading-tight">
+        Curious by default, <br><span class="grad-cyan-violet">disciplined by habit.</span>
+      </h2>
+      <div class="h-1 w-20 bg-gradient-to-r from-cyan to-violet my-6"></div>
+      
+      <p class="text-muted leading-relaxed text-base md:text-lg mb-4">
+        At Newton School, I approach Computer Science and Artificial Intelligence with a project-first mindset: write code, stress-test it, break it down to fundamentals, and ship clean solutions.
+      </p>
+      <p class="text-muted leading-relaxed text-base md:text-lg">
+        Python forms my core workbench, the web is my deployment ground, and competitive programming sharpens my analytical reflexes. Off the screen, sports like Kabaddi and Tug of War instill resilience and mental grit.
+      </p>
 
-<main class="max-w-6xl mx-auto px-4 space-y-32 pb-28 pt-28">
-
-<section id="about" class="grid md:grid-cols-5 gap-10 items-center">
-  <div class="md:col-span-3 rv">
-    <p class="lbl">01 <b>自己紹介</b> About</p>
-    <h2 class="font-head text-3xl md:text-5xl font-bold mt-4 leading-tight">Curious by default,<br><span class="grad">disciplined by habit.</span></h2><div class="hl"></div>
-    <p class="mt-6 text-violet-200/75 text-lg leading-relaxed">At Newton School I study Computer Science and AI the hands-on way: write code, break it, fix it, ship it. Python is my base, the web is my canvas, and competitive programming sharpens how I think.</p>
-    <p class="mt-4 text-violet-200/75 text-lg leading-relaxed">Next up: JavaScript, C++, Generative AI, deep learning and open source.</p>
-  </div>
-  <div class="md:col-span-2 panel tilt p-7 rv" style="--d:.15s">
-    <div class="z flex items-center justify-between"><p class="font-head text-lg font-semibold">Player Card</p><span class="chip !text-xs !border-pink-300/60 text-pink-200">LV 01 · Year 1</span></div>
-    <div class="z grid grid-cols-3 gap-3 mt-6 text-center">
-      <div class="rounded-xl bg-white/5 py-3"><div class="font-head text-3xl grad font-bold" data-n="1">0</div><div class="text-[.7rem] text-violet-300/70">Language</div></div>
-      <div class="rounded-xl bg-white/5 py-3"><div class="font-head text-3xl grad font-bold" data-n="2">0</div><div class="text-[.7rem] text-violet-300/70">Arenas</div></div>
-      <div class="rounded-xl bg-white/5 py-3"><div class="font-head text-3xl grad font-bold" data-n="3">0</div><div class="text-[.7rem] text-violet-300/70">Sports</div></div>
+      <div class="flex flex-wrap gap-3 mt-8 pt-6 border-t border-white/10 font-mono text-xs">
+        <span class="text-cyan">FOCUS DOMAINS:</span>
+        <span class="text-white">Applied AI</span> · 
+        <span class="text-white">Data Structures</span> · 
+        <span class="text-white">Modern Frontend</span> · 
+        <span class="text-white">System Architecture</span>
+      </div>
     </div>
-    <p class="z text-xs text-violet-300/70 mt-5">B.Tech · CS &amp; AI · Newton School</p>
-  </div>
-</section>
 
-<section id="skills">
-  <div class="rv"><p class="lbl">02 <b>技術</b> Skills</p><h2 class="font-head text-3xl md:text-5xl font-bold mt-4">What I build with</h2><div class="hl"></div></div>
-  <div class="grid md:grid-cols-3 gap-6 mt-10">
-    <div class="panel tilt p-7 rv"><div class="zz ico">Py</div><h3 class="z font-head text-lg font-semibold mt-4">Core Skills</h3><div class="z flex flex-wrap gap-2 mt-4"><span class="chip">Python</span><span class="chip">DSA (basics)</span><span class="chip">Problem Solving</span></div></div>
-    <div class="panel tilt p-7 rv" style="--d:.1s"><div class="zz ico">&lt;/&gt;</div><h3 class="z font-head text-lg font-semibold mt-4">Web Stack</h3><div class="z flex flex-wrap gap-2 mt-4"><span class="chip">HTML &amp; CSS</span><span class="chip">Tailwind CSS</span><span class="chip">Git &amp; GitHub</span></div></div>
-    <div class="panel tilt p-7 rv" style="--d:.2s"><div class="zz ico">AI</div><h3 class="z font-head text-lg font-semibold mt-4">Future Stack <span class="text-xs text-violet-300/70 font-sans font-normal">· unlocking soon</span></h3><div class="z flex flex-wrap gap-2 mt-4"><span class="chip lock">JavaScript</span><span class="chip lock">C++</span><span class="chip lock">Machine Learning</span><span class="chip lock">Deep Learning</span><span class="chip lock">GenAI</span></div></div>
-  </div>
-</section>
+    <div class="lg:col-span-5 glass-panel p-8 text-center levitate-alt flex flex-col items-center justify-center">
+      <div class="relative w-44 h-44 mb-6 flex items-center justify-center">
+        <!-- CSS Quantum Orbital Animation -->
+        <div class="absolute inset-0 border border-cyan/40 rounded-full animate-[spin_8s_linear_infinite]"></div>
+        <div class="absolute inset-4 border border-violet/50 rounded-full animate-[spin_12s_linear_infinite_reverse]"></div>
+        <div class="absolute inset-8 border border-white/20 rounded-full animate-[spin_6s_linear_infinite]"></div>
+        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan to-violet shadow-[0_0_30px_#00F0FF] flex items-center justify-center font-display font-extrabold text-sm text-black">
+          AI
+        </div>
+      </div>
+      <h3 class="font-display text-xl font-bold text-white">Quantum Core</h3>
+      <p class="font-mono text-xs text-muted mt-2">Active Continuous Learning Loop</p>
+      <div class="flex flex-wrap justify-center gap-2 mt-4">
+        <span class="q-chip">Python Engine</span>
+        <span class="q-chip">Algorithmics</span>
+        <span class="q-chip">3D WebGL</span>
+      </div>
+    </div>
+  </section>
 
-<section id="edge">
-  <div class="rv"><p class="lbl">03 <b>経験</b> Experience</p><h2 class="font-head text-3xl md:text-5xl font-bold mt-4">Builder’s speed. <span class="grad">Delegate’s poise.</span></h2><div class="hl"></div></div>
-  <div class="grid md:grid-cols-2 gap-6 mt-10">
-    <div class="panel tilt p-8 rv"><div class="zz text-4xl fl">⚡</div><h3 class="z font-head text-xl font-semibold mt-4">Hackathons</h3><p class="z text-violet-200/75 mt-2">Rapid prototyping, ideation and high-octane teamwork under real-world pressure.</p></div>
-    <div class="panel tilt p-8 rv" style="--d:.1s"><div class="zz text-4xl fl" style="animation-delay:-2s">🎙️</div><h3 class="z font-head text-xl font-semibold mt-4">Model UN</h3><p class="z text-violet-200/75 mt-2">Public speaking, geopolitics, consensus building, strategy and diplomacy.</p></div>
-  </div>
-</section>
+  <!-- ==================== 02 TECHNICAL ARSENAL (CLEAN & ORGANIZED) ==================== -->
+  <section id="arsenal" class="space-y-8">
+    <div class="text-center max-w-2xl mx-auto">
+      <div class="font-mono text-xs text-cyan tracking-widest uppercase">// 02 TECHNICAL ARSENAL</div>
+      <h2 class="font-display text-3xl md:text-5xl font-bold mt-2">Engineered for depth &amp; velocity</h2>
+      <p class="text-muted text-sm md:text-base mt-3">Organized into core foundations, modern web engineering, and active next-frontier research.</p>
+    </div>
 
-<section id="beyond">
-  <div class="rv"><p class="lbl">04 <b>趣味</b> Beyond the code</p><h2 class="font-head text-3xl md:text-5xl font-bold mt-4">Discipline off the keyboard</h2><div class="hl"></div></div>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-    <div class="panel tilt p-6 text-center rv"><div class="zz text-4xl">🤼</div><p class="z mt-3 font-medium">Kabaddi</p></div>
-    <div class="panel tilt p-6 text-center rv" style="--d:.08s"><div class="zz text-4xl">🪢</div><p class="z mt-3 font-medium">Tug of War</p></div>
-    <div class="panel tilt p-6 text-center rv" style="--d:.16s"><div class="zz text-4xl">🏊</div><p class="z mt-3 font-medium">Swimming</p></div>
-    <div class="panel tilt p-6 text-center rv" style="--d:.24s"><div class="zz text-4xl">🧭</div><p class="z mt-3 font-medium">Exploring</p></div>
-  </div>
-</section>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Column 1: Core Arsenal -->
+      <div class="glass-panel p-8 levitate flex flex-col justify-between">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-cyan/10 border border-cyan/30 flex items-center justify-center font-mono font-bold text-cyan text-lg mb-6">
+            01
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Core Foundations</h3>
+          <p class="text-muted text-sm mt-2">Languages and algorithmic reasoning mastered for problem-solving speed.</p>
+          
+          <div class="mt-6 space-y-4 font-mono text-xs">
+            <div>
+              <div class="flex justify-between text-muted mb-1">
+                <span class="text-white">Python 3</span>
+                <span class="text-cyan">Advanced / Core</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-cyan rounded-full" style="width:88%"></div>
+              </div>
+            </div>
 
-<section id="projects">
-  <div class="rv"><p class="lbl">05 <b>作品</b> Projects</p><h2 class="font-head text-3xl md:text-5xl font-bold mt-4">Featured work</h2><div class="hl"></div></div>
-  <div class="grid md:grid-cols-3 gap-6 mt-10" id="projGrid"></div>
-</section>
+            <div>
+              <div class="flex justify-between text-muted mb-1">
+                <span class="text-white">C++ (DSA &amp; CP)</span>
+                <span class="text-cyan">Basics &amp; Logic</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-cyan/80 rounded-full" style="width:65%"></div>
+              </div>
+            </div>
 
-<section id="contact" class="text-center rv">
-  <p class="lbl justify-center">06 <b>連絡</b> Contact</p>
-  <h2 class="font-head text-4xl md:text-6xl font-bold mt-4">Let’s build <span class="grad">together.</span></h2>
-  <p class="text-violet-200/75 mt-4">Hackathon team, open-source project or a good idea — I’m in.</p>
-  <div class="flex flex-wrap justify-center gap-6 mt-10" id="socials"></div>
-</section>
+            <div>
+              <div class="flex justify-between text-muted mb-1">
+                <span class="text-white">Problem Solving (Codeforces)</span>
+                <span class="text-cyan">Daily Drills</span>
+              </div>
+              <div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                <div class="h-full bg-cyan/70 rounded-full" style="width:72%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/10">
+          <span class="q-chip">OOP</span>
+          <span class="q-chip">Clean Code</span>
+          <span class="q-chip">Complexity Analysis</span>
+        </div>
+      </div>
+
+      <!-- Column 2: Web Stack -->
+      <div class="glass-panel p-8 levitate-alt flex flex-col justify-between border-cyan/30">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-cyan/20 border border-cyan/50 flex items-center justify-center font-mono font-bold text-cyan text-lg mb-6 shadow-[0_0_15px_rgba(0,240,255,0.2)]">
+            02
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Web Stack</h3>
+          <p class="text-muted text-sm mt-2">Modern browser architecture, reactive components, and styling frameworks.</p>
+
+          <div class="flex flex-wrap gap-2.5 mt-6">
+            <span class="q-chip">JavaScript (ES6+)</span>
+            <span class="q-chip">Tailwind CSS</span>
+            <span class="q-chip">HTML5 &amp; Semantic Web</span>
+            <span class="q-chip">CSS3 Animations</span>
+            <span class="q-chip">Three.js / WebGL</span>
+            <span class="q-chip">Git &amp; GitHub Versioning</span>
+            <span class="q-chip">Web Audio API</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-muted mt-8">
+          <span class="text-cyan font-mono block mb-1">💡 Architecture Note:</span>
+          Building fluid, responsive interfaces with modular component layouts and native hardware acceleration.
+        </div>
+      </div>
+
+      <!-- Column 3: Future Stack (Unlocking & AI) -->
+      <div class="glass-panel p-8 levitate flex flex-col justify-between border-violet/30">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-violet/20 border border-violet/40 flex items-center justify-center font-mono font-bold text-violet-300 text-lg mb-6 shadow-[0_0_15px_rgba(112,0,255,0.2)]">
+            03
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Future Stack</h3>
+          <p class="text-muted text-sm mt-2">Active trajectory into Machine Learning, deep networks, and GenAI models.</p>
+
+          <div class="flex flex-wrap gap-2.5 mt-6">
+            <span class="q-chip q-chip-future">Generative AI</span>
+            <span class="q-chip q-chip-future">Machine Learning</span>
+            <span class="q-chip q-chip-future">Deep Learning</span>
+            <span class="q-chip q-chip-future">PyTorch</span>
+            <span class="q-chip q-chip-future">NumPy &amp; Pandas</span>
+            <span class="q-chip q-chip-future">Open Source Models</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-violet/10 border border-violet/20 font-mono text-xs text-violet-200 mt-8">
+          <span class="text-violet-300 block mb-1">⚡ Next Frontier:</span>
+          Advancing from foundational linear models to Transformer architectures &amp; AI agents.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 03 FEATURED QUESTS / PROJECTS ==================== -->
+  <section id="projects" class="space-y-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <div class="font-mono text-xs text-cyan tracking-widest uppercase">// 03 FEATURED WORK</div>
+        <h2 class="font-display text-3xl md:text-5xl font-bold mt-2">Deployed prototypes &amp; labs</h2>
+      </div>
+      <a href="https://github.com/sudhanshukhetan" target="_blank" rel="noopener" class="font-mono text-xs text-cyan hover:underline flex items-center gap-1">
+        Explore GitHub Organization ↗
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Project 1 -->
+      <div class="glass-panel p-8 levitate flex flex-col justify-between group">
+        <div>
+          <div class="flex justify-between items-start font-mono text-xs">
+            <span class="text-cyan">QUEST · 01</span>
+            <span class="px-2.5 py-1 rounded-full bg-cyan/10 text-cyan border border-cyan/30 text-[10px]">ACTIVE</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mt-4 group-hover:text-cyan transition">
+            PyLab Toolkit
+          </h3>
+          <p class="text-muted text-sm mt-3 leading-relaxed">
+            A comprehensive suite of algorithmic problem solvers, modular CLI tools, and mathematical pattern engines built in clean, tested Python.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="q-chip">Python</span>
+            <span class="q-chip">Algorithms</span>
+            <span class="q-chip">DSA Logic</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-white/10 font-mono text-xs">
+          <a href="https://github.com/sudhanshukhetan" target="_blank" rel="noopener" class="text-cyan hover:underline">Repository ↗</a>
+          <a href="#contact" class="text-muted hover:text-white">Specs</a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="glass-panel p-8 levitate-alt flex flex-col justify-between group border-cyan/30">
+        <div>
+          <div class="flex justify-between items-start font-mono text-xs">
+            <span class="text-cyan">QUEST · 02</span>
+            <span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px]">LIVE</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mt-4 group-hover:text-cyan transition">
+            Quantum Lab Interface
+          </h3>
+          <p class="text-muted text-sm mt-3 leading-relaxed">
+            This portfolio: an interactive 3D particle lattice, procedural browser sound synthesis (Web Audio API), custom terminal emulator, and responsive layout.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="q-chip">Three.js</span>
+            <span class="q-chip">Web Audio</span>
+            <span class="q-chip">JavaScript</span>
+            <span class="q-chip">Tailwind</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-white/10 font-mono text-xs">
+          <a href="https://github.com/sudhanshukhetan" target="_blank" rel="noopener" class="text-cyan hover:underline">Source ↗</a>
+          <a href="#top" class="text-pink-300 hover:underline">Live Canvas ↑</a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="glass-panel p-8 levitate flex flex-col justify-between group">
+        <div>
+          <div class="flex justify-between items-start font-mono text-xs">
+            <span class="text-cyan">QUEST · 03</span>
+            <span class="px-2.5 py-1 rounded-full bg-violet/20 text-violet-300 border border-violet/40 text-[10px]">LEARNING</span>
+          </div>
+          <h3 class="font-display text-2xl font-bold text-white mt-4 group-hover:text-cyan transition">
+            NeuroLearn Foundations
+          </h3>
+          <p class="text-muted text-sm mt-3 leading-relaxed">
+            First-principles exploration of machine learning algorithms: implementing linear models, loss optimizers, and introductory neural networks from scratch.
+          </p>
+          <div class="flex flex-wrap gap-2 mt-6">
+            <span class="q-chip">Machine Learning</span>
+            <span class="q-chip">NumPy</span>
+            <span class="q-chip">Deep Nets</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 mt-8 pt-6 border-t border-white/10 font-mono text-xs">
+          <a href="https://github.com/sudhanshukhetan" target="_blank" rel="noopener" class="text-cyan hover:underline">Notebooks ↗</a>
+          <a href="#contact" class="text-muted hover:text-white">Roadmap</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 04 THE COMPETITIVE EDGE & BEYOND ==================== -->
+  <section id="edge" class="grid lg:grid-cols-12 gap-8 items-stretch">
+    <!-- Edge: Hackathons and MUN -->
+    <div class="lg:col-span-7 glass-panel p-8 md:p-10 levitate flex flex-col justify-between">
+      <div>
+        <div class="font-mono text-xs text-cyan tracking-widest uppercase mb-2">// 04 COMPETITIVE EDGE</div>
+        <h2 class="font-display text-3xl font-bold text-white">Speed of a builder. <br><span class="grad-cyan-violet">Poise of a delegate.</span></h2>
+        
+        <div class="grid sm:grid-cols-2 gap-4 mt-6">
+          <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <div class="text-2xl mb-2">⚡</div>
+            <h3 class="font-display font-bold text-lg text-white">Hackathons</h3>
+            <p class="text-muted text-xs mt-1.5 leading-relaxed">
+              Rapid ideation, aggressive sprint prototyping, and delivering functional code when the timer runs out.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <div class="text-2xl mb-2">🎙️</div>
+            <h3 class="font-display font-bold text-lg text-white">Model UN</h3>
+            <p class="text-muted text-xs mt-1.5 leading-relaxed">
+              Consensus building, geopolitical strategy, high-pressure public speaking, and leading diplomatic committees.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p class="font-mono text-xs text-muted mt-6 pt-4 border-t border-white/10">
+        Result: A developer who can write the code and present the vision with authority.
+      </p>
+    </div>
+
+    <!-- Beyond the Code: Sports -->
+    <div class="lg:col-span-5 glass-panel p-8 md:p-10 levitate-alt flex flex-col justify-between">
+      <div>
+        <div class="font-mono text-xs text-cyan tracking-widest uppercase mb-2">// OFF-KEYBOARD DISCIPLINE</div>
+        <h3 class="font-display text-2xl font-bold text-white">Physical Resilience</h3>
+        <p class="text-muted text-sm mt-2">Focus and tactical stamina built through athletics.</p>
+
+        <div class="grid grid-cols-2 gap-3 mt-6">
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-center hover:border-cyan transition">
+            <div class="text-3xl">🤼</div>
+            <div class="font-mono text-xs text-white font-medium mt-2">Kabaddi</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-center hover:border-cyan transition">
+            <div class="text-3xl">🪢</div>
+            <div class="font-mono text-xs text-white font-medium mt-2">Tug of War</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-center hover:border-cyan transition">
+            <div class="text-3xl">🏊</div>
+            <div class="font-mono text-xs text-white font-medium mt-2">Swimming</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-center hover:border-cyan transition">
+            <div class="text-3xl">🧭</div>
+            <div class="font-mono text-xs text-white font-medium mt-2">Exploring</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-xs font-mono text-cyan/80 mt-6 pt-4 border-t border-white/10">
+        Discipline in sports translates into perseverance when debugging complex systems.
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 05 CONTACT / CONNECT ==================== -->
+  <section id="contact" class="text-center max-w-2xl mx-auto space-y-6">
+    <div class="font-mono text-xs text-cyan tracking-widest uppercase">// 05 CONNECT</div>
+    <h2 class="font-display text-4xl md:text-6xl font-extrabold">Let’s build the <span class="grad-cyan-violet">future.</span></h2>
+    <p class="text-muted text-base">Open for hackathons, collaborative research, open-source projects, and engineering conversations.</p>
+
+    <div class="flex flex-wrap justify-center gap-4 pt-4">
+      <a href="https://github.com/sudhanshukhetan" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl border border-white/15 hover:border-cyan bg-white/5 font-mono text-xs text-white transition flex items-center gap-2">
+        <span>GitHub ↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/sudhanshu-khetan-50164a42a/" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl border border-white/15 hover:border-cyan bg-white/5 font-mono text-xs text-white transition flex items-center gap-2">
+        <span>LinkedIn ↗</span>
+      </a>
+      <a href="https://codeforces.com/profile/sudhanshu_khetan" target="_blank" rel="noopener" class="px-6 py-3 rounded-xl border border-white/15 hover:border-cyan bg-white/5 font-mono text-xs text-white transition flex items-center gap-2">
+        <span>Codeforces ↗</span>
+      </a>
+      <a href="mailto:sudhanshukhetan@gmail.com" class="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan to-violet text-black font-semibold font-mono text-xs transition hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+        sudhanshukhetan@gmail.com
+      </a>
+    </div>
+  </section>
+
 </main>
+
+<footer class="border-t border-white/10 py-12 text-center text-xs font-mono text-muted">
+  <p>© 2026 Sudhanshu Khetan · Quantum Lab · Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-cyan">`</kbd> for terminal</p>
+</footer>
 </div>
 
-<div id="term" class="hidden max-w-4xl mx-auto px-4 pt-10 pb-16">
-  <div id="tw" role="log" aria-live="polite"></div>
-  <form id="tf" class="mt-3 panel !shadow-none flex items-center gap-2 px-4 py-3 font-mono text-sm">
-    <span class="text-green-300">guest@sudhanshu</span><span class="text-violet-300/60">:~$</span>
-    <input id="tin" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command">
-  </form>
-  <p class="text-xs text-violet-300/60 mt-2 font-mono">Try: help · skills · projects · edge · hobbies · contact · sudo hire · exit</p>
-</div>
+<!-- ==================== INTERACTIVE TERMINAL EMULATOR ==================== -->
+<section id="terminalView" class="hidden max-w-4xl mx-auto px-4 py-16">
+  <div class="glass-panel p-6 border-cyan/40">
+    <div class="flex items-center justify-between pb-4 border-b border-white/10 font-mono text-xs text-muted">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+        <span class="ml-2 text-cyan">sudhanshu@quantum-lab: ~</span>
+      </div>
+      <button id="exitTermBtn" class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 text-white transition">
+        ← Exit to GUI
+      </button>
+    </div>
 
-<footer class="text-center text-xs text-violet-300/60 font-mono pb-10">© 2026 Sudhanshu Khetan · press <kbd class="px-1.5 py-0.5 rounded bg-white/10">`</kbd> for terminal</footer>
+    <div id="tw" class="mt-4 text-xs font-mono"></div>
 
-<dialog id="resume">
+    <form id="tf" class="mt-4 flex items-center gap-2 font-mono text-xs bg-black/40 px-3 py-2.5 rounded-lg border border-white/10">
+      <span class="text-cyan">guest@lab</span><span class="text-muted">:~$</span>
+      <input id="tin" autocomplete="off" spellcheck="false" class="flex-1 bg-transparent outline-none text-white font-mono" placeholder="type 'help'...">
+    </form>
+    <div class="font-mono text-[11px] text-muted mt-2">
+      Commands: about · skills · projects · edge · hobbies · contact · audio · sudo hire · clear · exit
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RESUME MODAL ==================== -->
+<dialog id="resumeModal" class="bg-[#090d14] text-white p-8 rounded-3xl border border-cyan/40 max-w-xl w-[calc(100%-2rem)] shadow-[0_0_50px_rgba(0,240,255,0.2)] backdrop:bg-black/80 backdrop:backdrop-blur-md">
   <div class="flex justify-between items-start">
     <div>
-      <p class="lbl">Resume Overview</p>
-      <h2 class="font-head text-2xl font-bold mt-2">Sudhanshu Khetan</h2>
+      <div class="font-mono text-xs text-cyan">// RESUME OVERVIEW</div>
+      <h2 class="font-display text-2xl font-bold mt-1">Sudhanshu Khetan</h2>
+      <p class="font-mono text-xs text-muted">B.Tech CS &amp; AI · Newton School</p>
     </div>
-    <button id="rClose" class="text-violet-300 hover:text-white text-xl p-1" aria-label="Close">✕</button>
+    <button id="resumeCloseBtn" class="text-muted hover:text-white text-xl">✕</button>
   </div>
-  <div class="mt-5 space-y-4 text-sm text-violet-100/85">
-    <div><p class="lbl mb-1">Education</p><p>B.Tech, Computer Science &amp; Artificial Intelligence — Newton School (First Year)</p></div>
-    <div><p class="lbl mb-1">Skills</p><p>Python · DSA (basics) · HTML/CSS · Tailwind CSS · Git &amp; GitHub · Problem-solving</p></div>
-    <div><p class="lbl mb-1">Activities</p><p>Hackathons · Model United Nations</p></div>
-    <div><p class="lbl mb-1">Interests</p><p>AI/ML · Generative AI · Deep Learning · Open Source · Kabaddi · Tug of War · Swimming</p></div>
+
+  <div class="mt-6 space-y-4 font-mono text-xs text-muted border-t border-b border-white/10 py-5">
+    <div>
+      <span class="text-cyan block mb-1">EDUCATION:</span>
+      <p class="text-white">B.Tech in Computer Science &amp; Artificial Intelligence (1st Year) — Newton School of Technology</p>
+    </div>
+    <div>
+      <span class="text-cyan block mb-1">CORE ARSENAL:</span>
+      <p class="text-white">Python 3, C++ (Basics &amp; DSA), HTML5, CSS3, Tailwind CSS, JavaScript (ES6+), Git &amp; GitHub</p>
+    </div>
+    <div>
+      <span class="text-cyan block mb-1">INTERESTS &amp; ACTIVITIES:</span>
+      <p class="text-white">Hackathon Prototyping, Model UN, Machine Learning Foundations, Kabaddi, Swimming</p>
+    </div>
   </div>
-  <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 print-hide">
-    <button onclick="window.print()" class="btn btn-p !py-1.5 !px-4 !text-xs"><span>Print / Save as PDF 🖨️</span></button>
-    <a href="mailto:sudhanshukhetan@gmail.com?subject=Resume%20Inquiry%20-%20Sudhanshu%20Khetan" class="text-xs text-sky-300 hover:underline">Email for Full Resume PDF ↗</a>
+
+  <div class="mt-6 flex flex-wrap items-center justify-between gap-3">
+    <button onclick="window.print()" class="px-5 py-2.5 rounded-xl bg-cyan text-black font-semibold font-mono text-xs hover:bg-cyan/90 transition">
+      Print / Save PDF 🖨️
+    </button>
+    <a href="mailto:sudhanshukhetan@gmail.com?subject=Full%20Resume%20Inquiry%20-%20Sudhanshu%20Khetan" class="font-mono text-xs text-cyan hover:underline">
+      Request Full PDF via Email ↗
+    </a>
   </div>
 </dialog>
 
+<!-- ==================== JAVASCRIPT: SOUND SYNTHESIS, 3D SCENE & FLOW ==================== -->
 <script>
-const CFG={
-  github:"https://github.com/sudhanshukhetan",
-  linkedin:"https://www.linkedin.com/in/sudhanshu-khetan-50164a42a/",
-  codeforces:"https://codeforces.com/profile/sudhanshu_khetan",
-  email:"sudhanshukhetan@gmail.com"
+/* -----------------------------------------------------------
+   CONFIG & HANDLES
+----------------------------------------------------------- */
+const CFG = {
+  github: "https://github.com/sudhanshukhetan",
+  linkedin: "https://www.linkedin.com/in/sudhanshu-khetan-50164a42a/",
+  codeforces: "https://codeforces.com/profile/sudhanshu_khetan",
+  email: "sudhanshukhetan@gmail.com"
 };
 
-const PROJECTS=[
- {n:"Python Problem-Solving Toolkit",d:"DSA solutions, algorithmic problems and CLI utilities in clean, tested Python.",t:["Python","DSA","Algorithms"],s:"Active"},
- {n:"Interactive Web Portfolio",d:"This site: a cel-shaded 3D scene, tilt cards, interactive terminal, and drifting sakura petals.",t:["Three.js","Tailwind CSS","JavaScript"],s:"Live"},
- {n:"AI Foundations Lab",d:"Machine learning basics and hands-on experiments on the path to deep learning and GenAI.",t:["Python","Machine Learning","NumPy"],s:"Learning"}
-];
+/* -----------------------------------------------------------
+   CUSTOM WEB AUDIO SOUND SYSTEM (NO EXTERNAL AUDIO FILES)
+----------------------------------------------------------- */
+let audioCtx = null;
+let masterGain = null;
+let subBassOsc = null;
+let subBassGain = null;
+let audioEnabled = true;
 
-const SKILLS={"Core skills":["Python","DSA (basics)","Problem Solving"],"Web stack":["HTML5","CSS3","Tailwind CSS","Git & GitHub"],"Future stack":["JavaScript","C++","Machine Learning","Deep Learning","Generative AI","Open Source"]};
+function initAudioSystem() {
+  if (audioCtx) return;
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  audioCtx = new AudioContext();
 
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  masterGain = audioCtx.createGain();
+  masterGain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+  masterGain.connect(audioCtx.destination);
 
-document.getElementById("projGrid").innerHTML=PROJECTS.map((p,i)=>`
- <div class="panel tilt p-7 rv flex flex-col" style="--d:${i*.1}s">
-  <div class="zz font-head text-5xl font-extrabold text-white/10">0${i+1}</div>
-  <span class="z lbl mt-2 !text-sky-300">Quest · ${esc(p.s)}</span>
-  <h3 class="z font-head text-lg font-semibold mt-3">${esc(p.n)}</h3>
-  <p class="z text-violet-200/75 text-sm mt-2 flex-1">${esc(p.d)}</p>
-  <div class="z flex flex-wrap gap-2 mt-4">${p.t.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div>
-  <div class="z flex gap-5 mt-5 text-sm font-semibold">
-    <a class="text-sky-300 hover:underline" href="${CFG.github}" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="text-pink-300 hover:underline" href="#top">Back to Top ↑</a>
-  </div>
- </div>`).join("");
-
-const soc=[["GitHub",CFG.github],["LinkedIn",CFG.linkedin],["Codeforces",CFG.codeforces]];
-if(CFG.email)soc.push(["Email","mailto:"+CFG.email]);
-document.getElementById("socials").innerHTML=soc.map(([l,u])=>`<a class="btn mg" href="${u}" target="_blank" rel="noopener"><span>${l} ↗</span></a>`).join("");
-
-const mw=["Python","HTML & CSS","Tailwind CSS","Machine Learning","Deep Learning","Generative AI","Open Source","Hackathons","Model UN"];
-document.getElementById("mq").innerHTML=[...mw,...mw].map(w=>`<span>${w} <span class="text-pink-300/70">✿</span></span>`).join("");
-
-/* mobile menu toggle */
-const mobBtn=document.getElementById("mobileNavBtn"),mobMenu=document.getElementById("mobileMenu");
-if(mobBtn&&mobMenu){
-  mobBtn.onclick=()=>mobMenu.classList.toggle("hidden");
-  mobMenu.querySelectorAll("a").forEach(a=>a.onclick=()=>mobMenu.classList.add("hidden"));
+  // 1. Low Sub-Bass Hum (Ambient Engine): Continuous 55 Hz sine wave
+  startAmbientSubBass();
 }
 
-/* hero name: letter-by-letter entrance */
-function split(id,txt,o){
-  const el=document.getElementById(id);
-  if(el)el.innerHTML=[...txt].map((c,i)=>`<span class="ch" style="--i:${i+o}">${c===" "?"&nbsp;":c}</span>`).join("");
-}
-split("n1","Sudhanshu",0);split("n2","Khetan",9);
+function startAmbientSubBass() {
+  if (!audioCtx || subBassOsc) return;
+  
+  subBassOsc = audioCtx.createOscillator();
+  subBassGain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
 
-const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
-document.querySelectorAll(".tilt").forEach(c=>{
- c.addEventListener("pointermove",e=>{if(reduce)return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*12).toFixed(1)}deg) rotateY(${(x*12).toFixed(1)}deg) scale(1.02)`});
- c.addEventListener("pointerleave",()=>{c.style.transform=""});
-});
+  subBassOsc.type = 'sine';
+  subBassOsc.frequency.setValueAtTime(55, audioCtx.currentTime); // 55 Hz
 
-document.querySelectorAll(".mg").forEach(b=>{
- b.addEventListener("pointermove",e=>{if(reduce)return;const r=b.getBoundingClientRect();b.style.translate=`${((e.clientX-r.left)/r.width-.5)*8}px ${((e.clientY-r.top)/r.height-.5)*6}px`});
- b.addEventListener("pointerleave",()=>{b.style.translate=""});
-});
+  filter.type = 'lowpass';
+  filter.frequency.setValueAtTime(110, audioCtx.currentTime);
 
-function count(el){const n=+el.dataset.n;let i=0;const s=setInterval(()=>{el.textContent=++i;if(i>=n)clearInterval(s)},280)}
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");e.target.querySelectorAll("[data-n]").forEach(count);io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+  subBassGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+  subBassGain.gain.linearRampToValueAtTime(0.05, audioCtx.currentTime + 3);
 
-const prog=document.getElementById("prog");
-addEventListener("scroll",()=>{
-  const maxScroll=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-  prog.style.width=(scrollY/maxScroll*100)+"%";
-},{passive:true});
-
-const words=["Python developer","problem solver","web builder","future AI engineer"];
-const ty=document.getElementById("typed");let wi=0,ci=0,del=false;
-(function tick(){
- if(!ty)return;
- const w=words[wi];ci+=del?-1:1;ty.textContent=w.slice(0,ci);let t=del?40:85;
- if(!del&&ci===w.length){del=true;t=1400}else if(del&&ci===0){del=false;wi=(wi+1)%words.length;t=300}
- setTimeout(tick,t);
-})();
-
-const rd=document.getElementById("resume");
-const rBtn=document.getElementById("resumeBtn");
-if(rBtn&&rd){
-  rBtn.onclick=()=>{try{rd.showModal()}catch(e){rd.setAttribute("open","")}};
-  document.getElementById("rClose").onclick=()=>rd.close();
-  rd.addEventListener("click",e=>{if(e.target===rd)rd.close()});
+  subBassOsc.connect(filter);
+  filter.connect(subBassGain);
+  subBassGain.connect(masterGain);
+  subBassOsc.start();
 }
 
-/* Three.js: cel-shaded hero, glowing moon, drifting sakura petals */
-const gui=document.getElementById("gui");
-(function(){
- if(typeof THREE==="undefined")return;
- try{
-   const canvas=document.getElementById("c3d");
-   if(!canvas)return;
-   const R=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
-   R.setPixelRatio(Math.min(devicePixelRatio,2));
-   const S=new THREE.Scene(),C=new THREE.PerspectiveCamera(50,1,.1,100);C.position.z=9;
-   S.add(new THREE.AmbientLight(0xffffff,.55));
-   const DL=new THREE.DirectionalLight(0xffffff,.9);DL.position.set(3,4,5);S.add(DL);
-   const tones=new THREE.DataTexture(new Uint8Array([70,70,70,255,160,160,160,255,255,255,255,255]),3,1,THREE.RGBAFormat);
-   tones.minFilter=tones.magFilter=THREE.NearestFilter;tones.needsUpdate=true;
-   function toon(geo,color){
-     const g=new THREE.Group();
-     g.add(new THREE.Mesh(geo,new THREE.MeshToonMaterial({color,gradientMap:tones})));
-     const o=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:0x1b1340,side:THREE.BackSide}));
-     o.scale.setScalar(1.07);
-     g.add(o);
-     return g;
-   }
-   /* moon */
-   const mc=document.createElement("canvas");mc.width=mc.height=256;const x=mc.getContext("2d");
-   let g=x.createRadialGradient(128,128,20,128,128,128);g.addColorStop(0,"rgba(255,244,214,1)");g.addColorStop(.35,"rgba(255,217,138,.9)");g.addColorStop(.38,"rgba(255,158,199,.25)");g.addColorStop(1,"rgba(255,158,199,0)");
-   x.fillStyle=g;x.fillRect(0,0,256,256);
-   const moon=new THREE.Mesh(new THREE.PlaneGeometry(16,16),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(mc),transparent:true,depthWrite:false}));
-   moon.position.set(5,3,-14);S.add(moon);
-   /* hero */
-   const H=new THREE.Group();S.add(H);
-   const knot=toon(new THREE.TorusKnotGeometry(1.15,.38,120,16),0xff9ec7);
-   const ring=new THREE.Mesh(new THREE.TorusGeometry(2.5,.03,8,120),new THREE.MeshBasicMaterial({color:0xb9a6ff}));ring.rotation.x=1.2;
-   H.add(knot,ring);
-   const stars=[[0xffd98a,.34],[0x7cc8ff,.3],[0xb9a6ff,.26]].map(([c,s])=>{const m=toon(new THREE.OctahedronGeometry(s),c);H.add(m);return m});
-   /* sparkles */
-   const N=160,P=new Float32Array(N*3);for(let i=0;i<N;i++){P[i*3]=(Math.random()-.5)*26;P[i*3+1]=(Math.random()-.5)*16;P[i*3+2]=-8+Math.random()*8}
-   const sg=new THREE.BufferGeometry();sg.setAttribute("position",new THREE.BufferAttribute(P,3));
-   const sp=new THREE.Points(sg,new THREE.PointsMaterial({color:0xfff2c9,size:.07,transparent:true,opacity:.85}));S.add(sp);
-   /* petals */
-   const pg=new THREE.PlaneGeometry(.22,.15),cols=[0xff9ec7,0xffb7d5,0xffc9de,0xf58bb5],petals=[];
-   for(let i=0;i<110;i++){const m=new THREE.Mesh(pg,new THREE.MeshBasicMaterial({color:cols[i%4],side:THREE.DoubleSide,transparent:true,opacity:.9}));
-    m.position.set((Math.random()-.5)*22,(Math.random()-.5)*18,-6+Math.random()*10);
-    m.userData={v:.5+Math.random()*.8,ph:Math.random()*6.3,r:1+Math.random()*2};m.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6);S.add(m);petals.push(m)}
-   let mx=0,my=0;addEventListener("pointermove",e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-   let wide=true;function size(){R.setSize(innerWidth,innerHeight,false);C.aspect=innerWidth/innerHeight;C.updateProjectionMatrix();wide=innerWidth>900}
-   size();addEventListener("resize",size);
-   const clock=new THREE.Clock();let wind=0,lastY=scrollY;
-   (function loop(){requestAnimationFrame(loop);
-    if(gui.classList.contains("hidden"))return;
-    const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
-    const dy=Math.abs(scrollY-lastY);lastY=scrollY;wind+=(Math.min(dy,60)*.06-wind)*.08;
-    const p=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight);
-    C.position.x+=(mx*1.2-C.position.x)*.05;C.position.y+=(-my*.8-C.position.y)*.05;C.lookAt(0,0,0);
-    H.position.set(wide?3.6:0,(wide?.4:2.6)+p*16,0);H.scale.setScalar(wide?1:.62);
-    knot.rotation.set(t*.35+my,t*.5+mx,0);ring.rotation.z=t*.4;
-    stars.forEach((s,i)=>{const a=t*.9+i*2.1;s.position.set(Math.cos(a)*2.7,Math.sin(a*1.3)*1.4,Math.sin(a)*2.7);s.rotation.set(a,a*1.3,0)});
-    moon.position.y=3+Math.sin(t*.4)*.25-p*3;sp.rotation.z=t*.01;sp.material.opacity=.6+Math.sin(t*2)*.25;
-    petals.forEach(m=>{const u=m.userData;m.position.y-=(u.v+wind)*dt;m.position.x+=(Math.sin(t*.8+u.ph)*.5+.35+wind*.6)*dt;
-     m.rotation.x+=u.r*dt;m.rotation.y+=u.r*.7*dt;if(m.position.y<-9){m.position.y=9;m.position.x=(Math.random()-.5)*22}if(m.position.x>12)m.position.x=-12});
-    R.render(S,C)})();
- }catch(err){
-   console.warn("3D canvas init skipped:",err);
- }
-})();
+// 2. Data-Stream Micro Click (High-frequency noise burst during countdown)
+function playDataTick(pitchRatio = 1) {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(1800 + Math.random() * 800 * pitchRatio, now);
+  
+  gain.gain.setValueAtTime(0.03, now);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.015);
+  
+  osc.connect(gain);
+  gain.connect(masterGain);
+  osc.start(now);
+  osc.stop(now + 0.02);
+}
 
-const term=document.getElementById("term"),tw=document.getElementById("tw"),tin=document.getElementById("tin"),mb=document.getElementById("modeBtn");
-let tMode=false,booted=false;
-function out(h){const d=document.createElement("div");d.className="mb-1 leading-relaxed whitespace-pre-wrap";d.innerHTML=h;tw.appendChild(d);tw.scrollTop=tw.scrollHeight}
-function setMode(t){tMode=t;gui.classList.toggle("hidden",t);term.classList.toggle("hidden",!t);mb.firstElementChild.textContent=t?"◧ Graphical":">_ Terminal";scrollTo({top:0});
- if(t){if(!booted){booted=true;out(`<span class="g">Sudhanshu OS v1.0</span> — type <span class="b">help</span> to begin.`)}tin.focus()}}
-mb.onclick=()=>setMode(!tMode);
-addEventListener("keydown",e=>{if(e.key==="`"&&document.activeElement!==tin){e.preventDefault();setMode(!tMode)}});
-const wait=ms=>new Promise(r=>setTimeout(r,ms));
-const CMD={
- help:()=>`Available commands:\n  <span class="b">about</span>     who I am\n  <span class="b">skills</span>    technical arsenal\n  <span class="b">projects</span>  things I’m building\n  <span class="b">edge</span>      hackathons &amp; MUNs\n  <span class="b">hobbies</span>   beyond the code\n  <span class="b">contact</span>   get in touch\n  <span class="b">sudo hire</span> …try it\n  <span class="b">clear</span> · <span class="b">exit</span>`,
- about:()=>`<span class="g">Sudhanshu Khetan</span>\nFirst-year B.Tech, CS &amp; AI @ Newton School.\nFocus: Python, web development, competitive programming.\nNext: AI/ML, Generative AI, deep learning, open source.`,
- whoami:()=>"guest — but you could be a collaborator.",
- skills:()=>Object.entries(SKILLS).map(([k,v])=>`<span class="b">${k}</span>: ${v.map(esc).join(" · ")}`).join("\n"),
- projects:()=>PROJECTS.map((p,i)=>`<span class="g">[${i+1}] ${esc(p.n)}</span> <span class="m">(${esc(p.s)})</span>\n    ${esc(p.d)}`).join("\n"),
- edge:()=>`<span class="b">Hackathons</span>: rapid prototyping, teamwork under pressure.\n<span class="b">Model UN</span>: public speaking, strategy, diplomacy.`,
- hobbies:()=>`Kabaddi · Tug of War · Swimming · Exploring new things`,
- contact:()=>soc.map(([l,u])=>`${l.padEnd(11)}<a class="b underline" target="_blank" rel="noopener" href="${u}">${esc(u)}</a>`).join("\n"),
- ls:()=>"about  skills  projects  edge  hobbies  contact",
- clear:()=>{tw.innerHTML="";return null},
- exit:()=>{setTimeout(()=>setMode(false),150);return "Returning to graphical mode…"},
- "sudo hire":async()=>{for(const l of ["[sudo] verifying candidate…","✔ Python ........ OK","✔ Problem-solving  OK","✔ Teamwork under pressure OK","✔ Curiosity ..... UNLIMITED","<span class=\"g\">Access granted. Excellent hire detected.</span>","Type <span class=\"b\">contact</span> to make it official."]){out(l);await wait(380)}return null}
+// 3. Deep Bass Drop / Stinger (150 Hz -> 30 Hz glide when name lands)
+function playDeepBassDrop() {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const oscHarmonic = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+
+  // Sub-bass glide: 150 Hz down to 30 Hz
+  osc.type = 'sine';
+  osc.frequency.setValueAtTime(150, now);
+  osc.frequency.exponentialRampToValueAtTime(30, now + 1.2);
+
+  // Soft triangle harmonic
+  oscHarmonic.type = 'triangle';
+  oscHarmonic.frequency.setValueAtTime(300, now);
+  oscHarmonic.frequency.exponentialRampToValueAtTime(60, now + 0.9);
+
+  gain.gain.setValueAtTime(0.35, now);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 1.4);
+
+  osc.connect(gain);
+  oscHarmonic.connect(gain);
+  gain.connect(masterGain);
+
+  osc.start(now);
+  oscHarmonic.start(now);
+  osc.stop(now + 1.5);
+  oscHarmonic.stop(now + 1.5);
+}
+
+// 4. Transition Warp Whoosh: Filtered frequency sweep when entering portfolio
+function playWarpWhoosh() {
+  if (!audioCtx || !audioEnabled) return;
+  const now = audioCtx.currentTime;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const filter = audioCtx.createBiquadFilter();
+
+  osc.type = 'sawtooth';
+  osc.frequency.setValueAtTime(70, now);
+  osc.frequency.exponentialRampToValueAtTime(1400, now + 0.7);
+  osc.frequency.exponentialRampToValueAtTime(180, now + 1.3);
+
+  filter.type = 'bandpass';
+  filter.frequency.setValueAtTime(200, now);
+  filter.frequency.exponentialRampToValueAtTime(2200, now + 0.65);
+  filter.frequency.exponentialRampToValueAtTime(280, now + 1.3);
+  filter.Q.value = 3.5;
+
+  gain.gain.setValueAtTime(0.001, now);
+  gain.gain.linearRampToValueAtTime(0.18, now + 0.5);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 1.35);
+
+  osc.connect(filter);
+  filter.connect(gain);
+  gain.connect(masterGain);
+
+  osc.start(now);
+  osc.stop(now + 1.4);
+}
+
+// Audio Toggle Button
+const audioBtn = document.getElementById("audioToggle");
+const audioLabel = document.getElementById("audioLabel");
+const eqGraphic = document.getElementById("eqGraphic");
+
+audioBtn.onclick = () => {
+  if (!audioCtx) initAudioSystem();
+  audioEnabled = !audioEnabled;
+  if (masterGain) {
+    masterGain.gain.setValueAtTime(audioEnabled ? 0.35 : 0.0001, audioCtx.currentTime);
+  }
+  audioLabel.textContent = audioEnabled ? "AUDIO ON" : "AUDIO MUTED";
+  eqGraphic.style.opacity = audioEnabled ? "1" : "0.3";
 };
-let hist=[],hp=0;
-document.getElementById("tf").addEventListener("submit",async e=>{
- e.preventDefault();const raw=tin.value.trim();tin.value="";if(!raw)return;
- hist.push(raw);hp=hist.length;
- out(`<span class="g">guest@sudhanshu</span><span class="m">:~$</span> ${esc(raw)}`);
- const f=CMD[raw.toLowerCase().replace(/\s+/g," ")];
- if(f){const r=await f();if(r)out(r)}else out(`command not found: ${esc(raw)} — try <span class="b">help</span>`);
+
+/* -----------------------------------------------------------
+   THREE.JS: QUANTUM INTERACTIVE PARTICLE LATTICE
+----------------------------------------------------------- */
+let scene, camera, renderer, particleSystem, orbitalRing;
+let mouseX = 0, mouseY = 0;
+
+function initThreeScene() {
+  const canvas = document.getElementById("gl");
+  renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+  camera.position.z = 18;
+
+  // Quantum Particle Grid / Lattice
+  const particleCount = 750;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particleCount * 3);
+  const colors = new Float32Array(particleCount * 3);
+
+  const colorCyan = new THREE.Color(0x00F0FF);
+  const colorViolet = new THREE.Color(0x7000FF);
+  const colorWhite = new THREE.Color(0xffffff);
+
+  for (let i = 0; i < particleCount; i++) {
+    positions[i * 3] = (Math.random() - 0.5) * 55;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 35;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 30;
+
+    const r = Math.random();
+    const c = r < 0.55 ? colorCyan : (r < 0.85 ? colorViolet : colorWhite);
+    colors[i * 3] = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+  const material = new THREE.PointsMaterial({
+    size: 0.12,
+    vertexColors: true,
+    transparent: true,
+    opacity: 0.75
+  });
+
+  particleSystem = new THREE.Points(geometry, material);
+  scene.add(particleSystem);
+
+  // Geometric wireframe ring
+  const ringGeo = new THREE.TorusGeometry(8, 0.04, 16, 100);
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0x00F0FF, transparent: true, opacity: 0.25, wireframe: true });
+  orbitalRing = new THREE.Mesh(ringGeo, ringMat);
+  orbitalRing.rotation.x = Math.PI / 3;
+  scene.add(orbitalRing);
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  const cursorGlow = document.getElementById("cursorGlow");
+  window.addEventListener('pointermove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    cursorGlow.style.left = e.clientX + "px";
+    cursorGlow.style.top = e.clientY + "px";
+  });
+
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  const time = performance.now() * 0.0006;
+
+  if (particleSystem) {
+    particleSystem.rotation.y = time * 0.15 + mouseX * 0.2;
+    particleSystem.rotation.x = time * 0.08 + mouseY * 0.15;
+  }
+
+  if (orbitalRing) {
+    orbitalRing.rotation.z = time * 0.25;
+    orbitalRing.rotation.y = time * 0.15;
+  }
+
+  camera.position.x += (mouseX * 2.5 - camera.position.x) * 0.05;
+  camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+  camera.lookAt(0, 0, 0);
+
+  renderer.render(scene, camera);
+}
+
+/* -----------------------------------------------------------
+   CINEMATIC INTRO SEQUENCE (~15 SECONDS TOTAL TIMING)
+----------------------------------------------------------- */
+const introOverlay = document.getElementById("intro");
+const gatekeeper = document.getElementById("gatekeeper");
+const initBtn = document.getElementById("initBtn");
+const skipBtn = document.getElementById("skipBtn");
+const bootSeq = document.getElementById("bootSequence");
+const countNum = document.getElementById("countNum");
+const bootBar = document.getElementById("bootBar");
+const bootStatus = document.getElementById("bootStatus");
+const nameReveal = document.getElementById("nameReveal");
+const firstName = document.getElementById("firstName");
+const lastName = document.getElementById("lastName");
+const nameLine = document.getElementById("nameLine");
+const subText = document.getElementById("subText");
+
+let introSkipped = false;
+
+function endIntro() {
+  if (introSkipped) return;
+  introSkipped = true;
+  playWarpWhoosh();
+  introOverlay.classList.add("off");
+}
+
+skipBtn.onclick = () => endIntro();
+
+initBtn.onclick = () => {
+  initAudioSystem();
+  gatekeeper.classList.add("hidden");
+  bootSeq.classList.remove("hidden");
+  runBootCountdown();
+};
+
+function runBootCountdown() {
+  let count = 100;
+  const duration = 3200; // 3.2 seconds
+  const startTime = performance.now();
+
+  const statuses = [
+    "ALIGNING QUANTUM OSCILLATORS",
+    "INITIALIZING PYTHON SYSTEM LATTICE",
+    "CALIBRATING GPU LOGIC MATRIX",
+    "DE-CLUTTERING NEURAL CACHE",
+    "CORE READY · WELCOME"
+  ];
+
+  function step(now) {
+    if (introSkipped) return;
+    const progress = Math.min(1, (now - startTime) / duration);
+    count = Math.round(100 * (1 - progress));
+    countNum.textContent = String(count).padStart(2, "0");
+    bootBar.style.width = (progress * 100) + "%";
+
+    const sIndex = Math.min(statuses.length - 1, Math.floor(progress * statuses.length));
+    bootStatus.textContent = statuses[sIndex];
+
+    // Trigger crisp white-noise micro ticks during countdown
+    if (count % 3 === 0 && countNum.dataset.lastTick != count) {
+      countNum.dataset.lastTick = count;
+      playDataTick(progress);
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      setTimeout(runNameStinger, 350);
+    }
+  }
+  requestAnimationFrame(step);
+}
+
+function runNameStinger() {
+  if (introSkipped) return;
+  bootSeq.classList.add("hidden");
+  nameReveal.classList.remove("hidden");
+
+  // DEEP BASS DROP / STINGER (150 Hz -> 30 Hz glide)
+  playDeepBassDrop();
+
+  // Reveal Name
+  firstName.style.transition = "opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2,0.8,0.2,1)";
+  firstName.style.opacity = "1";
+  firstName.style.transform = "translateY(0)";
+
+  setTimeout(() => {
+    if (introSkipped) return;
+    lastName.style.transition = "opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2,0.8,0.2,1)";
+    lastName.style.opacity = "1";
+    lastName.style.transform = "translateY(0)";
+    nameLine.style.width = "100%";
+  }, 400);
+
+  // Type subtext
+  setTimeout(() => {
+    if (introSkipped) return;
+    subText.style.opacity = "1";
+    typeText(subText, "CS & ARTIFICIAL INTELLIGENCE · NEWTON SCHOOL", 40, () => {
+      setTimeout(() => {
+        if (!introSkipped) endIntro();
+      }, 1600);
+    });
+  }, 900);
+}
+
+function typeText(el, text, speed, onDone) {
+  el.textContent = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    if (introSkipped) { clearInterval(interval); return; }
+    el.textContent += text[i];
+    playDataTick(0.5);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      if (onDone) onDone();
+    }
+  }, speed);
+}
+
+/* -----------------------------------------------------------
+   TERMINAL EMULATOR
+----------------------------------------------------------- */
+const termView = document.getElementById("terminalView");
+const guiWrapper = document.getElementById("guiWrapper");
+const termBtn = document.getElementById("termBtn");
+const exitTermBtn = document.getElementById("exitTermBtn");
+const tw = document.getElementById("tw");
+const tin = document.getElementById("tin");
+const tf = document.getElementById("tf");
+
+let termOpen = false;
+
+function toggleTerm(show) {
+  termOpen = (typeof show === 'boolean') ? show : !termOpen;
+  termView.classList.toggle("hidden", !termOpen);
+  guiWrapper.classList.toggle("hidden", termOpen);
+  termBtn.textContent = termOpen ? "◧ GUI View" : ">_ Terminal";
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (termOpen) {
+    if (tw.innerHTML === "") {
+      printTerm(`<span class="text-cyan">Sudhanshu OS v6.0</span> — Quantum Lab CLI`);
+      printTerm(`Type <span class="text-violet-400">help</span> to list available commands.\n`);
+    }
+    tin.focus();
+  }
+}
+
+termBtn.onclick = () => toggleTerm();
+exitTermBtn.onclick = () => toggleTerm(false);
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === '`' && document.activeElement !== tin) {
+    e.preventDefault();
+    toggleTerm();
+  }
 });
-tin.addEventListener("keydown",e=>{if(e.key==="ArrowUp"&&hist.length){hp=Math.max(0,hp-1);tin.value=hist[hp];e.preventDefault()}else if(e.key==="ArrowDown"){hp=Math.min(hist.length,hp+1);tin.value=hist[hp]||"";e.preventDefault()}});
-tw.addEventListener("click",()=>tin.focus());
+
+function printTerm(line) {
+  const div = document.createElement("div");
+  div.className = "mb-1 leading-relaxed";
+  div.innerHTML = line;
+  tw.appendChild(div);
+  tw.scrollTop = tw.scrollHeight;
+}
+
+const COMMANDS = {
+  help: () => `Available commands:
+  <span class="text-cyan">about</span>     Hypothesis & background
+  <span class="text-cyan">skills</span>    Technical arsenal breakdown
+  <span class="text-cyan">projects</span>  Featured active quests
+  <span class="text-cyan">edge</span>      Hackathons & MUN poise
+  <span class="text-cyan">hobbies</span>   Beyond the code
+  <span class="text-cyan">contact</span>   Handles & email
+  <span class="text-cyan">audio</span>     Toggle soundscape
+  <span class="text-cyan">sudo hire</span> Simulate offer protocol
+  <span class="text-cyan">clear</span> · <span class="text-cyan">exit</span>`,
+  about: () => `Sudhanshu Khetan — First-year B.Tech CS & AI @ Newton School.
+Focus: Python systems, web dev, competitive programming.
+Next: Machine Learning, Generative AI, PyTorch, open-source models.`,
+  skills: () => `Core:     Python 3, C++ (Logic & DSA), Problem Solving
+Web:      HTML5, CSS3, Tailwind CSS, JavaScript (ES6+), Three.js
+Future:   Machine Learning, Deep Learning, PyTorch, GenAI models`,
+  projects: () => `[1] PyLab Toolkit      - Algorithmic solvers & Python utilities
+[2] Quantum Lab UI     - Interactive 3D particle lattice & Web Audio
+[3] NeuroLearn         - First-principles deep learning notebooks`,
+  edge: () => `Hackathons: Rapid sprint prototyping under clock pressure.
+Model UN:   Strategic diplomacy, persuasion & rhetoric.`,
+  hobbies: () => `Kabaddi · Tug of War · Swimming · Exploring new domains`,
+  contact: () => `GitHub:    <a class="text-cyan underline" href="${CFG.github}" target="_blank">${CFG.github}</a>
+LinkedIn:  <a class="text-cyan underline" href="${CFG.linkedin}" target="_blank">${CFG.linkedin}</a>
+Codeforces:<a class="text-cyan underline" href="${CFG.codeforces}" target="_blank">${CFG.codeforces}</a>
+Email:     <a class="text-cyan underline" href="mailto:${CFG.email}">${CFG.email}</a>`,
+  audio: () => {
+    audioBtn.click();
+    return `Audio state toggled: ${audioEnabled ? 'ON' : 'MUTED'}`;
+  },
+  "sudo hire": () => {
+    return `[sudo] verifying credentials...
+✔ Skill verification: Python & Web Stack passed.
+✔ Teamwork & Hackathon sprint capability confirmed.
+✔ Candidate status: READY TO BUILD.
+Type <span class="text-cyan">contact</span> to initiate discussion.`;
+  },
+  clear: () => { tw.innerHTML = ""; return ""; },
+  exit: () => { toggleTerm(false); return "Returning to GUI mode..."; }
+};
+
+tf.onsubmit = (e) => {
+  e.preventDefault();
+  const raw = tin.value.trim();
+  tin.value = "";
+  if (!raw) return;
+
+  printTerm(`<span class="text-cyan">guest@lab</span><span class="text-muted">:~$</span> ${raw}`);
+  const cmd = raw.toLowerCase().replace(/\s+/g, " ");
+  if (COMMANDS[cmd]) {
+    const res = COMMANDS[cmd]();
+    if (res) printTerm(res);
+  } else {
+    printTerm(`command not found: ${raw} — type <span class="text-cyan">help</span>`);
+  }
+};
+
+/* -----------------------------------------------------------
+   RESUME DIALOG
+----------------------------------------------------------- */
+const resumeModal = document.getElementById("resumeModal");
+const resumeOpenBtn = document.getElementById("resumeOpenBtn");
+const resumeCloseBtn = document.getElementById("resumeCloseBtn");
+
+if (resumeOpenBtn && resumeModal) {
+  resumeOpenBtn.onclick = () => {
+    try { resumeModal.showModal(); } catch (e) { resumeModal.setAttribute("open", ""); }
+  };
+  resumeCloseBtn.onclick = () => resumeModal.close();
+  resumeModal.onclick = (e) => { if (e.target === resumeModal) resumeModal.close(); };
+}
+
+/* -----------------------------------------------------------
+   INITIALIZE ON WINDOW LOAD
+----------------------------------------------------------- */
+window.addEventListener('DOMContentLoaded', () => {
+  initThreeScene();
+});
 </script>
+
 </body>
 </html>
